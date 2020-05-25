@@ -12,6 +12,8 @@
 #include "chrome/browser/media/webrtc/desktop_media_list_observer.h"
 #include "chrome/browser/media/webrtc/native_desktop_media_list.h"
 #include "gin/handle.h"
+#include "gin/wrappable.h"
+#include "shell/common/gin_helper/dictionary.h"
 #include "shell/common/gin_helper/trackable_object.h"
 
 namespace electron {
@@ -34,6 +36,12 @@ class DesktopCapturer : public gin_helper::TrackableObject<DesktopCapturer>,
 
   static void BuildPrototype(v8::Isolate* isolate,
                              v8::Local<v8::FunctionTemplate> prototype);
+
+  static std::string GetMediaSourceIdForWebContents(
+      v8::Isolate* isolate,
+      gin_helper::ErrorThrower thrower,
+      int32_t request_web_contents_id,
+      int32_t web_contents_id);
 
   void StartHandling(bool capture_window,
                      bool capture_screen,
